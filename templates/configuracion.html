@@ -1,0 +1,246 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">TFM</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">Reset</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+<form class="form-register" role="form" method="post" action="{{ url_for('final') }}">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Modbus information</div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <label for="dirEsc">Slave address</label>
+            <textarea class="form-control" name="dirEsc" id="dirEsc" rows="1"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Object Type</label>
+            <div class="radio"><label><input type="radio" name="optradio" value="1" checked="checked">Discrete input</label></div>
+            <div class="radio"><label><input type="radio" name="optradio" value="2">Coil</label></div>
+            <div class="radio"><label><input type="radio" name="optradio" value="3">Register input</label></div>
+            <div class="radio"><label><input type="radio" name="optradio" value="4">Holding register</label></div>
+        </div>
+
+        </div>
+</div>
+
+</div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">BACnet Informaion</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="nomBac">Object name</label>
+            <textarea class="form-control" name="nomBac" id="nomBac" rows="1"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Object type</label>
+            <div class="radio"><label><input type="radio" name="optradio1" value="1" checked="checked">Analog input</label></div>
+            <div class="radio"><label><input type="radio" name="optradio1" value="2">Analog output</label></div>
+            <div class="radio"><label><input type="radio" name="optradio1" value="3">Binary input</label></div>
+            <div class="radio"><label><input type="radio" name="optradio1" value="4">Binary output</label></div>
+          </div>
+          <div class="form-group">
+            <label for="descBac">Object description</label>
+            <textarea class="form-control" name="descBac" id="descBac" rows="1"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="selObj">Unit of measurement</label>
+            <select class="selectpicker" id="selObj" name="seleccion">
+              <optgroup label="Area">
+                <option>SQUARE_METERS</option>
+                <option>SQUARE_FEET</option>
+              </optgroup>
+              <optgroup label="Electrical">
+                <option>MILLIAMPERES</option>
+                <option>AMPERES</option>
+                <option>OHMS</option>
+                <option>VOLTS</option>
+                <option>KILOVOLTS</option>
+                <option>MEGAVOLTS</option>
+                <option>VOLT_AMPERES</option>
+                <option>KILOVOLT_AMPERES</option>
+                <option>MEGAVOLT_AMPERES</option>
+                <option>VOLT_AMPERES_REACTIVE</option>
+                <option>KILOVOLT_AMPERES_REACTIVE</option>
+                <option>MEGAVOLT_AMPERES_REACTIVE</option>
+                <option>DEGREES_PHASE</option>
+              </optgroup>
+              <optgroup label="Energy">
+                <option>JOULES</option>
+                <option>KILOJOULES</option>
+                <option>WATT_HOURS</option>
+                <option>KILOWATT_HOURS</option>
+                <option>BTU</option>
+                <option>THERM</option>
+                <option>TON_HOR</option>
+              </optgroup>
+              <optgroup label="Enthalpy">
+                <option>JOULES_PER_KILOGRAM_DRY_AIR</option>
+                <option>BTU_PER_POUND_DRY_AIR</option>
+              </optgroup>
+              <optgroup label="Frequency">
+                <option>CYCLES_PER_HOUR</option>
+                <option>CYCLES_PER_MINUTE</option>
+                <option>HERTZ</option>
+              </optgroup>
+              <optgroup label="Humidity">
+                <option>GRAMS_OF_WATER_PER_KILOGRAM_DRY_AIR</option>
+                <option>PERCENT_RELATIVE_HUMIDITY</option>
+              </optgroup>
+              <optgroup label="Length">
+                <option>MILLIMETER</option>
+                <option>METERS</option>
+                <option>INCH</option>
+                <option>FEET</option>
+              </optgroup>
+              <optgroup label="Light">
+                <option>WATTS_PER_SQUARE_FOOT</option>
+                <option>WATTS_PER_SQUARE_METER</option>
+                <option>LUMEN</option>
+                <option>LUX</option>
+                <option>FOOT_CANDLES</option>
+              </optgroup>
+              <optgroup label="Mass">
+                <option>KILOGRAMS</option>
+                <option>POUNDS_MASS</option>
+                <option>TONS</option>
+              </optgroup>
+              <optgroup label="Mass_Flow">
+                <option>KILOGRAMS_PER_SECOND</option>
+                <option>KILOGRAMS_PER_MINUTE</option>
+                <option>KILOGRAMS_PER_HOUR</option>
+                <option>POUNDS_MASS_PER_MINUTE</option>
+                <option>POUNDS_MASS_PER_HOUR</option>
+              </optgroup>
+              <optgroup label="Power">
+                <option>WATTS</option>
+                <option>KILOWATTS</option>
+                <option>MEGAWATTS</option>
+                <option>BTU_PER_HOUR</option>
+                <option>HORSEPOWER</option>
+                <option>TONS_REFRIGERATIONS</option>
+              </optgroup>
+              <optgroup label="Pressure">
+                <option>PASCALS</option>
+                <option>KILOPASCAL</option>
+                <option>BAR</option>
+                <option>POUNDS_FORCE_PER_SQUARE_INCH</option>
+                <option>CENTIMETERS_OF_WATER</option>
+                <option>INCHES_OF_WATER</option>
+                <option>MILLIMETERS_OF_MERCURY</option>
+                <option>CENTIMETERS_OF_MERCURY</option>
+                <option>INCHES_OF_MERCURY</option>
+              </optgroup>
+              <optgroup label="Temperature">
+                <option>DEGREES_CELSIUS</option>
+                <option>DEGREES_KELVIN</option>
+                <option>DEGREES_FAHRENHEIT</option>
+                <option>DEGREE_DAYS_CELSIUS</option>
+                <option>DEGREE_DAYS_FAHRENHEIT</option>
+              </optgroup>
+              <optgroup label="Time">
+                <option>YEAR</option>
+                <option>MONTH</option>
+                <option>WEEK</option>
+                <option>DAY</option>
+                <option>HOUR</option>
+                <option>MINUTE</option>
+                <option>SECOND</option>
+              </optgroup>
+              <optgroup label="Velocity">
+                <option>METERS_PER_SECOND</option>
+                <option>KILOMETERS_PER_HOUR</option>
+                <option>FEET_PER_SECOND</option>
+                <option>FEET_PER_MINUTE</option>
+                <option>MILES_PER_HOUR</option>
+              </optgroup>
+              <optgroup label="Volume">
+                <option>CUBIC_FEET</option>
+                <option>CUBIC_METERS</option>
+                <option>IMPERIAL_GALLONS</option>
+                <option>LITERS</option>
+                <option>US_GALLONS</option>
+              </optgroup>
+              <optgroup label="Volumetric_Flow">
+                <option>CUBIC_FEET_PER_MINUTE</option>
+                <option>CUBIC_METERS_PER_SECOND</option>
+                <option>IMPERIAL_GALLONS_PER_MINUTE</option>
+                <option>LITERS_PER_SECOND</option>
+                <option>LITERS_PER_MINUTE</option>
+                <option>US_GALLONS_PER_MINUTE</option>
+              </optgroup>
+              <optgroup label="Others">
+                <option>DEGREES_ANGULAR</option>
+                <option>DEGREES_CELSIUS_PER_HOUR</option>
+                <option>DEGREES_CELSIUS_PER_MINUTE</option>
+                <option>DEGREES_FAHRENHEIT_PER_HOUR</option>
+                <option>DEGREES_FAHRENHEIT_PER_MINUTE</option>
+                <option>NO_UNITS</option>
+                <option>PARTS_PER_MILLION</option>
+                <option>PARTS_PER_BILLION</option>
+                <option>PERCENT</option>
+                <option>PERCENT_PER_SECOND</option>
+                <option>PER_MINUTE</option>
+                <option>PER_SECOND</option>
+                <option>PSI_PER_DEGREE_FAHRENHEIT</option>
+                <option>RADIANS</option>
+                <option>REVOLUTIONS_PER_MINUTE</option>
+              </optgroup>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-sm-offset-5 col-sm-2 text-center" style="margin-top:20px">
+        <button class="btn btn-primary" type="submit">Save register</button>
+      </div>
+  </div>
+</form>
+<br>
+<br>
+<br>
+<br>
+</div>
+
+
+<div id="footer">
+  {% block footer %}
+  <center>
+  &copy; Copyright 2017 by <a href="http://domain.invalid/">Jose Manuel García Fernández</a>.
+</center>
+  {% endblock %}
+</div>
+{% endblock %}

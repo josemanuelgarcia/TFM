@@ -1,0 +1,74 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="">TFM</a>
+    </div>
+  </div><!-- /.container-fluid -->
+</div>
+{% endblock %}
+
+{% block content %}
+
+  <center><h1>Translation of ModBus to BACnet</h1></center>
+  <div class="container">
+    <form class="form-register" role="form" method="post" action="{{ url_for('configuracion') }}">
+
+      <div class="form-group">
+        <label for="exampleTextarea">Conversion name</label>
+        <textarea class="form-control" name="nomCSV" id="nomCSV" rows="1"></textarea>
+      </div>
+
+      <center><h2>Registers table</h2></center>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            {% for q in csv %}
+              <th>{{q}}</th>
+            ​{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <tr>
+              {% for q in range(5) %}
+                <tr>
+                  {% for j in range(9) %}
+                    <th>-</th>
+                  ​{% endfor %}
+                </tr>
+              ​{% endfor %}
+            </tr>
+          </tr>
+        </tbody>
+      </table>
+  <div class="row">
+      <div class="col-sm-offset-5 col-sm-2 text-center" style="margin-top:20px">
+        <button class="btn btn-primary" type="submit">Add register</button>
+      </div>
+  </div>
+</form>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<div id="footer">
+  {% block footer %}
+  <center>
+  &copy; Copyright 2017 by <a href="http://domain.invalid/">Jose Manuel García Fernández</a>.
+</center>
+  {% endblock %}
+</div>
+{% endblock %}

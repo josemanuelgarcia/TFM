@@ -1,0 +1,91 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}TFM{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ url_for('index') }}">TFM</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('index') }}">Reset</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<center><h2>Conversion name: {{name_csv}}</h2></center>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      {% for q in csv %}
+        <th>{{q}}</th>
+      ​{% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% if texto[1][0] =='0'%}
+      <tr>
+        {% for q in texto %}
+          <tr>
+            {% for j in q %}
+              <th>{{j}}</th>
+            ​{% endfor %}
+          </tr>
+        ​{% endfor %}
+      </tr>
+      {% else %}
+      <tr>
+        {% for q in texto %}
+            <th>{{q}}</th>
+        {% endfor %}
+      </tr>
+      {% endif %}
+    </tr>
+  </tbody>
+</table>
+
+<form class="form-register" role="form" method="post" action="{{ url_for('configuracion') }}">
+  <div class="row">
+      <div class="col-sm-offset-5 col-sm-2 text-center" style="margin-top:20px">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Add register</button>
+      </div>
+  </div>
+</form>
+
+<form class="form-register" role="form" method="post" action="{{ url_for('descarga') }}">
+  <div class="row">
+      <div class="col-sm-offset-5 col-sm-2 text-center" style="margin-top:20px">
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Create file</button>
+      </div>
+  </div>
+</form>
+</div
+
+<br>
+<br>
+<br>
+<br>
+<div id="footer">
+  {% block footer %}
+  <center>
+  &copy; Copyright 2017 by <a href="http://domain.invalid/">Jose Manuel García Fernández</a>.
+</center>
+  {% endblock %}
+</div>
+{% endblock %}
